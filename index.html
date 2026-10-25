@@ -196,8 +196,8 @@ function say(t,gap){
       u.onend=()=>setTimeout(r,gap||150);u.onerror=()=>r();
       speechSynthesis.speak(u);
     };
-    /* pre-generated British woman voice (audio/say/*.mp3), falls back to browser voice */
-    const a=new Audio(`audio/say/${slug(t)}.mp3`);ca=a;
+    /* pre-generated British woman voice (say/*.mp3), falls back to browser voice */
+    const a=new Audio(`say/${slug(t)}.mp3`);ca=a;
     let failed=false;
     a.onerror=()=>{if(!failed){failed=true;fallback()}};
     a.onended=()=>setTimeout(r,gap||150);
@@ -304,7 +304,7 @@ $("#wgrid").onclick=e=>{const b=e.target.closest(".lb");if(b)lesson(+b.dataset.i
 $("#sgrid").innerHTML=L.map(x=>`<button class="lb" data-c="${x.c}">${x.c}${lo(x)}</button>`).join("");
 $("#sgrid").onclick=e=>{const b=e.target.closest(".lb");if(!b)return;
   $$("#sgrid .lb").forEach(k=>k.classList.toggle("sel",k===b));
-  $("#vwrap").style.display="block";const v=$("#vid");v.src=`videos/${b.dataset.c}.mp4`;v.play().catch(()=>{});v.scrollIntoView({behavior:"smooth"})};
+  $("#vwrap").style.display="block";const v=$("#vid");v.src=`${b.dataset.c}.mp4`;v.play().catch(()=>{});v.scrollIntoView({behavior:"smooth"})};
 
 /* ---------- tracing: Big and small together ---------- */
 let tc=0;
